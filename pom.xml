@@ -6,6 +6,7 @@
     <modules>
         <module>middle-parent</module>
         <module>middle-mongo</module>
+        <module>middle-mail</module>
     </modules>
     <groupId>com.github</groupId>
     <artifactId>middle-demo</artifactId>
