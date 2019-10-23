@@ -50,6 +50,9 @@
     <properties>
         <java.version>1.8</java.version>
         <ribbon.version>2.2.2</ribbon.version>
+        <fastjson.version>1.2.62</fastjson.version>
+        <kafka.version>2.3.0</kafka.version>
+        <spring.kafka.version>2.3.1.RELEASE</spring.kafka.version>
     </properties>
 
     <dependencyManagement>
@@ -70,6 +73,26 @@
                 <version>${ribbon.version}</version>
             </dependency>
 
+            <!--fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!-- kafka -->
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring.kafka.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
+            <!-- kafka -->
+
         </dependencies>
     </dependencyManagement>
 
@@ -78,6 +101,21 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
 
 
 </project>

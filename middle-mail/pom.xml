@@ -23,9 +23,12 @@
         </dependency>
 
 
+        <!--热加载-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <scope>true</scope>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
