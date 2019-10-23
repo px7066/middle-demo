@@ -4,9 +4,13 @@ import org.apache.kafka.clients.consumer.CommitFailedException;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.PartitionInfo;
+import org.apache.kafka.common.TopicPartition;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -37,8 +41,9 @@ public class KafkaConsumerMain {
     public static void main(String[] args) {
         KafkaConsumerMain kafkaConsumerMain = new KafkaConsumerMain();
         KafkaConsumer kafkaConsumer = kafkaConsumerMain.init();
-        kafkaConsumer.subscribe(Collections.singleton("CustomerCountry"));
-        kafkaConsumerMain.consume(kafkaConsumer);
+//        kafkaConsumer.subscribe(Collections.singleton("CustomerCountry"), new HadnleRebalance());
+//        kafkaConsumerMain.consume(kafkaConsumer);
+        kafkaConsumerMain.consumeByPartition(kafkaConsumer);
     }
 
     void consume(KafkaConsumer kafkaConsumer) {
@@ -60,6 +65,26 @@ public class KafkaConsumerMain {
             e.printStackTrace();
         } finally {
             kafkaConsumer.close();
+        }
+    }
+
+    void consumeByPartition(KafkaConsumer kafkaConsumer){
+        List<PartitionInfo> partitionInfos = kafkaConsumer.partitionsFor("CustomerCountry");
+        List<TopicPartition> partitions = new ArrayList<>();
+        if(null != partitionInfos){
+            for (PartitionInfo partitionInfo : partitionInfos) {
+                partitions.add(new TopicPartition(partitionInfo.topic(), partitionInfo.partition()));
+            }
+            kafkaConsumer.assign(partitions);
+            while (true){
+                ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMinutes(1000L));
+                for (ConsumerRecord<String, String> record : records) {
+                    System.out.printf("topic = %s, partition = %s, offset = %d, customer = %s, country = %s\n", record.topic(),
+                            record.partition(), record.offset(), record.key(),
+                            record.value());
+                }
+                kafkaConsumer.commitSync();
+            }
         }
     }
 
