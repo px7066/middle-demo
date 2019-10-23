@@ -8,6 +8,11 @@
         <module>middle-mongo</module>
         <module>middle-mail</module>
         <module>middle-redis</module>
+        <module>middle-eureka-center</module>
+        <module>middle-eureka-producer</module>
+        <module>middle-eureka-consumer</module>
+        <module>middle-dubbo-producer</module>
+        <module>middle-dubbo-consumer</module>
     </modules>
     <groupId>com.github</groupId>
     <artifactId>middle-demo</artifactId>
