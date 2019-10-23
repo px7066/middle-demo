@@ -27,9 +27,6 @@ public class KafkaConsumerMain {
 
     KafkaConsumer<String, String> init(){
         kafkaProps.put("bootstrap.servers", "47.105.137.27:9092");
-        kafkaProps.put("acks", "all");
-        kafkaProps.put("retries", 0);
-        kafkaProps.put("batch.size", 16384);
         kafkaProps.put("group.id", "CountryCounter");
         kafkaProps.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         kafkaProps.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
