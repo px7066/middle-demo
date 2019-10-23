@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>middle-eureka-center</artifactId>
+    <artifactId>eureka-center</artifactId>
 
 
 </project>

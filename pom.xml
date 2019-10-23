@@ -13,6 +13,7 @@
         <module>middle-eureka-consumer</module>
         <module>middle-dubbo-producer</module>
         <module>middle-dubbo-consumer</module>
+        <module>remote-api</module>
     </modules>
     <groupId>com.github</groupId>
     <artifactId>middle-demo</artifactId>
