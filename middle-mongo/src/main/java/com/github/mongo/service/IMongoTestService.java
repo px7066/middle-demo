@@ -1,6 +1,6 @@
-package com.github.middlemongo.service;
+package com.github.mongo.service;
 
-import com.github.middlemongo.model.UserPO;
+import com.github.mongo.model.UserPO;
 
 /**
  * service

@@ -1,4 +1,4 @@
-package com.github.middlemongo.model;
+package com.github.mongo.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

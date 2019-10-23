@@ -1,4 +1,4 @@
-package com.github.middlemail.service;
+package com.github.mail.service;
 
 public interface IMailService {
     void sendSimpleMail();

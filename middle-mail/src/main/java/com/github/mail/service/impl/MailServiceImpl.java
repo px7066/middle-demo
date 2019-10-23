@@ -1,6 +1,6 @@
-package com.github.middlemail.service.impl;
+package com.github.mail.service.impl;
 
-import com.github.middlemail.service.IMailService;
+import com.github.mail.service.IMailService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import lombok.extern.slf4j.Slf4j;

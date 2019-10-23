@@ -1,4 +1,4 @@
-package com.github.middlemongo.model.dto;
+package com.github.mongo.model.dto;
 
 
 import lombok.Data;

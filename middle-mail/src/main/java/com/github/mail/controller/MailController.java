@@ -1,6 +1,6 @@
-package com.github.middlemail.controller;
+package com.github.mail.controller;
 
-import com.github.middlemail.service.IMailService;
+import com.github.mail.service.IMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

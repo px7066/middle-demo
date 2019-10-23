@@ -1,9 +1,9 @@
-package com.github.middlemongo.service.impl;
+package com.github.mongo.service.impl;
 
-import com.github.middlemongo.model.UserPO;
-import com.github.middlemongo.model.dto.MongoTemplateGroupSubTestDTO;
-import com.github.middlemongo.model.dto.MongoTemplateGroupTestDTO;
-import com.github.middlemongo.service.IMongoTestService;
+import com.github.mongo.model.UserPO;
+import com.github.mongo.model.dto.MongoTemplateGroupSubTestDTO;
+import com.github.mongo.model.dto.MongoTemplateGroupTestDTO;
+import com.github.mongo.service.IMongoTestService;
 import com.mongodb.client.AggregateIterable;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
