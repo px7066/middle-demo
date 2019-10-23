@@ -63,6 +63,7 @@
                 <scope>import</scope>
             </dependency>
 
+            <!--ribbon-->
             <dependency>
                 <groupId>com.netflix.ribbon</groupId>
                 <artifactId>ribbon</artifactId>
