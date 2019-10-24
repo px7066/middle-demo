@@ -38,7 +38,7 @@ public class KafkaConsumerMain {
     public static void main(String[] args) {
         KafkaConsumerMain kafkaConsumerMain = new KafkaConsumerMain();
         KafkaConsumer kafkaConsumer = kafkaConsumerMain.init();
-//        kafkaConsumer.subscribe(Collections.singleton("CustomerCountry"), new HadnleRebalance());
+//        kafkaConsumer.subscribe(Collections.singleton("CustomerCountry"), new HandleRebalance());
 //        kafkaConsumerMain.consume(kafkaConsumer);
         kafkaConsumerMain.consumeByPartition(kafkaConsumer);
     }

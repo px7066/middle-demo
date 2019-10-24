@@ -20,6 +20,7 @@ public class KafkaProducerController {
     @GetMapping("/message/send")
     public boolean send(String message){
         kafkaTemplate.send("test_send_message","message" ,message);
+//        kafkaTemplate.send("test_send_message",1,"messagess" ,message +"as");
         return true;
     }
 }

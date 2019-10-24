@@ -15,7 +15,7 @@ import java.util.Map;
  * @version 1.0.0
  * @since 1.0
  */
-public class HadnleRebalance implements ConsumerRebalanceListener {
+public class HandleRebalance implements ConsumerRebalanceListener {
     @Override
     public void onPartitionsRevoked(Collection<TopicPartition> collection) {
         System.out.println("onPartitionsRevoked");
