@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
  * <p>控制器</p>
  *
  * @author <a href="mailto:7066450@qq.com">panxi</a>
- * @version $Id$
+ * @version 1.0.0
  * @since 1.0
  */
 @RestController

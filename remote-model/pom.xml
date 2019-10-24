@@ -6,19 +6,16 @@
         <artifactId>middle-parent</artifactId>
         <groupId>com.github</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../middle-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>remote-api</artifactId>
+    <artifactId>remote-model</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.github</groupId>
-            <artifactId>remote-model</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
-
     </dependencies>
 
 

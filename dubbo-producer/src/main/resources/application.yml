@@ -1,0 +1,29 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /producer
+#mysql
+spring:
+  datasource:
+    url: jdbc:mysql://47.105.137.27:3306/dubbo?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  type-aliases-package: com.github.dubbo.producer.domain
+  mapper-locations: classpath:com/github/dubbo/producer/mapper/*Mapper.xml
+
+#sql log
+#logging:
+#  level: debug
+
+#dubbo
+dubbo:
+  application:
+    name: dubbo-producer  #dubbo的注册的服务名, 唯一性
+  registry:
+    address: zookeeper://47.105.137.27:2181  #注册zookeeper的地址
+  protocol:
+    port: 27777
+    name: dubbo
+

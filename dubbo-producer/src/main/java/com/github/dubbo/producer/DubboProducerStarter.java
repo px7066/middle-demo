@@ -1,6 +1,7 @@
-package com.github.dubbo.consumer;
+package com.github.dubbo.producer;
 
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,10 +13,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 1.0
  */
 @SpringBootApplication
+@MapperScan("com.github.dubbo.producer.dao")
 @EnableDubbo
-public class DubboConsumerStarter {
+public class DubboProducerStarter {
     public static void main(String[] args) {
-        SpringApplication.run(DubboConsumerStarter.class, args);
+        SpringApplication.run(DubboProducerStarter.class, args);
     }
 
 }
