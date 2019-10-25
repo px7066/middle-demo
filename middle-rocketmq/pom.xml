@@ -6,12 +6,20 @@
         <artifactId>middle-parent</artifactId>
         <groupId>com.github</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../middle-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>middle-kafka</artifactId>
+    <artifactId>middle-rocketmq</artifactId>
+
 
     <dependencies>
+        <!--项目内依赖-->
+        <dependency>
+            <groupId>com.github</groupId>
+            <artifactId>middle-common</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -42,16 +50,6 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-        </dependency>
-
         <!--lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -63,6 +61,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
+
+        <!-- rocketmq-->
+        <dependency>
+            <groupId>com.alibaba.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+        </dependency>
+
 
     </dependencies>
 

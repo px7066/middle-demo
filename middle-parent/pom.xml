@@ -61,10 +61,30 @@
         <dubbo.version>0.2.0</dubbo.version>
         <druid.version>1.1.12</druid.version>
         <mybatis.spring.boot.version>2.1.0</mybatis.spring.boot.version>
+        <rocketmq.client.version>3.2.6</rocketmq.client.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--项目内依赖-->
+            <dependency>
+                <groupId>com.github</groupId>
+                <artifactId>remote-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github</groupId>
+                <artifactId>middle-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github</groupId>
+                <artifactId>remote-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!-- Spring Boot 依赖 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -129,10 +149,18 @@
                 <version>${druid.version}</version>
             </dependency>
 
+            <!--mybatis-->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.spring.boot.version}</version>
+            </dependency>
+
+            <!-- rocketmq-->
+            <dependency>
+                <groupId>com.alibaba.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.client.version}</version>
             </dependency>
 
         </dependencies>
