@@ -4,6 +4,7 @@ import com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import com.alibaba.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import com.alibaba.rocketmq.common.message.MessageExt;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -21,12 +22,11 @@ import java.util.List;
  */
 @Component
 @ConfigurationProperties("listen")
+@Data
 @Slf4j
 public class ConsumerMsgListenerProcessor implements MessageListenerConcurrently {
-    @Value("${topic}")
     private String topic;
 
-    @Value("${tags}")
     private String tags;
 
     @Override

@@ -5,6 +5,7 @@ import com.alibaba.rocketmq.common.consumer.ConsumeFromWhere;
 import com.alibaba.rocketmq.common.protocol.heartbeat.MessageModel;
 import com.github.common.exception.RocketConfigException;
 import com.github.rocketmq.listen.ConsumerMsgListenerProcessor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,18 +25,13 @@ import org.springframework.util.StringUtils;
 @Configuration
 @ConfigurationProperties(prefix = "rocketmq.consumer")
 @Slf4j
+@Data
 public class ConsumerConfiguration {
-    @Value("${namesrvAddr}")
     private String namesrvAddr;
-    @Value("${groupName}")
     private String groupName;
-    @Value("${consumeThreadMin}")
     private Integer consumeThreadMin;
-    @Value("${consumeThreadMax}")
     private Integer consumeThreadMax;
-    @Value("${topics}")
     private String topics;
-    @Value("${consumeMessageBatchMaxSize}")
     private Integer consumeMessageBatchMaxSize;
 
     @Autowired
@@ -67,7 +63,7 @@ public class ConsumerConfiguration {
          */
         pushConsumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         //设置消费模型，集群还是广播，默认为集群
-        pushConsumer.setMessageModel(MessageModel.CLUSTERING);
+        pushConsumer.setMessageModel(MessageModel.BROADCASTING);
 
         //设置一次消费消息的条数，默认为1条
         if(consumeMessageBatchMaxSize != null){
@@ -77,8 +73,7 @@ public class ConsumerConfiguration {
 
         try {
             /**
-             * 设置该消费者订阅的主题和tag，如果是订阅该主题下的所有tag，
-             * 则tag使用*；如果需要指定订阅该主题下的某些tag，则使用||分割，例如tag1||tag2||tag3
+             * 设置该消费者订阅的主题和tag，如果是订阅该主题下的所有tag,则tag使用*，
              */
             pushConsumer.subscribe(topics, "*");
             pushConsumer.start();

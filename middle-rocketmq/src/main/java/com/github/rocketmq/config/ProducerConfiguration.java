@@ -4,6 +4,7 @@ import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
 import com.github.common.exception.RocketConfigException;
 import com.github.rocketmq.listen.ConsumerMsgListenerProcessor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -21,22 +22,18 @@ import org.springframework.util.StringUtils;
  */
 @Configuration
 @ConfigurationProperties(prefix = "rocketmq.producer")
+@Data
 @Slf4j
 public class ProducerConfiguration {
 
-    @Value("${groupName}")
     private String groupName;
 
-    @Value("${namesrvAddr}")
     private String namesrvAddr;
 
-    @Value("${maxMessageSize}")
     private Integer maxMessageSize;
 
-    @Value("${sendMsgTimeout}")
     private Integer sendMsgTimeout;
 
-    @Value("${retryTimesWhenSendFailed}")
     private Integer retryTimesWhenSendFailed;
 
     @Bean
