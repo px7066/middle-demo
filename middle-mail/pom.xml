@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>middle-mail</artifactId>
+    <description>springboot整合mail</description>
 
     <dependencies>
         <dependency>
