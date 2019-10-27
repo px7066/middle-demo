@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-producer</artifactId>
+    <description>dubbo生产者</description>
 
     <dependencies>
         <!--内部依赖-->
