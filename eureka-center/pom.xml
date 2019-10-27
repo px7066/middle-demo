@@ -9,6 +9,7 @@
         <relativePath>../middle-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <description>eureka中心，可以重复启动，主从配置</description>
 
     <artifactId>eureka-center</artifactId>
 
