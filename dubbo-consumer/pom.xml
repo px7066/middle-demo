@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-consumer</artifactId>
+    <description>dubbo消费者demo</description>
 
     <dependencies>
         <!--内部依赖-->
