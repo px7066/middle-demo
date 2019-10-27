@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>middle-kafka</artifactId>
-
+    <description>kafka简单demo</description>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
