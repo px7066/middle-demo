@@ -17,6 +17,7 @@
         <module>remote-model</module>
         <module>middle-rocketmq</module>
         <module>middle-common</module>
+        <module>concurrent-process</module>
     </modules>
     <groupId>com.github</groupId>
     <artifactId>middle-demo</artifactId>
