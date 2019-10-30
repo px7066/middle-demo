@@ -1,4 +1,4 @@
-package com.github.concurrent.lockdemo;
+package com.github.concurrent.lockdemo.factory;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;

@@ -1,5 +1,7 @@
 package com.github.concurrent.lockdemo;
 
+import com.github.concurrent.lockdemo.factory.WorkThreadFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
