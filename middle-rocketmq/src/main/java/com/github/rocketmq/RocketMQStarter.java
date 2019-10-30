@@ -1,7 +1,6 @@
 package com.github.rocketmq;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -13,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class RocketMQStarter {
+
     public static void main(String[] args) {
         SpringApplication.run(RocketMQStarter.class, args);
     }
