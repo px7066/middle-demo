@@ -21,7 +21,23 @@ public class CyclicBarrierDemo {
         ThreadFactory threadFactory = new WorkThreadFactory();
         ExecutorService executorService = new ThreadPoolExecutor(3, 10, 1000, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(), threadFactory);
+        for(int i = 0; i< 2; i++){
+            executorService.execute(()->{
+                try {
+                    System.out.println(Thread.currentThread().getName() + " 到达集结点 A");
+                    cyclicBarrier.await();
+                    System.out.println(Thread.currentThread().getName() + " 离开集结点 A");
 
+                    Thread.sleep(2000);
+                    System.out.println(Thread.currentThread().getName() + " 到达集结点 B");
+                    cyclicBarrier.await();
+                    System.out.println(Thread.currentThread().getName() + " 离开集结点 B");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        executorService.shutdown();
     }
 
 
