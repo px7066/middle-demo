@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 mybatis:
   type-aliases-package: com.github.dubbo.producer.domain
-  mapper-locations: classpath:com/github/dubbo/producer/mapper/*Mapper.xml
+  mapper-locations: classpath:com/github/dubbo/producer/dao/*Mapper.xml
 
 #sql log
 #logging:
