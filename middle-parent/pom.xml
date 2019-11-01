@@ -89,6 +89,8 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <!--项目内依赖-->
+
             <!-- Spring Boot 依赖 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

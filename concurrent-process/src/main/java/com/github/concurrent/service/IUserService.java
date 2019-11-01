@@ -11,5 +11,11 @@ import com.github.concurrent.model.vo.UserVo;
  */
 public interface IUserService {
 
-    UserVo queryUser(Integer userId);
+    UserVo queryUserById(Integer userId);
+
+    UserVo queryUserByName(String name);
+
+    boolean saveUser(UserVo vo);
+
+    Long queryVisitNum();
 }
