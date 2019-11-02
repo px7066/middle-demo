@@ -10,10 +10,15 @@ import lombok.Data;
  * @since 1.0
  */
 @Data
-public class UserVo {
+public class UserVo implements Cloneable{
     private Integer id;
 
     private String name;
 
     private Integer age;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
