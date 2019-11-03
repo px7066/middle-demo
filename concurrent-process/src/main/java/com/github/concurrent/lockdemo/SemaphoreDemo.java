@@ -26,7 +26,7 @@ public class SemaphoreDemo {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }finally {
-                semaphore.release(5);
+                semaphore.release(4);
             }
         });
         executorService.execute(() -> {

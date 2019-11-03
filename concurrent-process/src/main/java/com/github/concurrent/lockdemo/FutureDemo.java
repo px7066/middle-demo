@@ -11,7 +11,7 @@ import java.util.concurrent.*;
  * @version 1.0.0
  * @since 1.0
  */
-public class FutrueDemo {
+public class FutureDemo {
     final static FutureTask<Map<String,String>> future = new FutureTask<>(() ->{
         System.out.println("开始初始化");
         ConcurrentHashMap<String, String> map = new ConcurrentHashMap();
