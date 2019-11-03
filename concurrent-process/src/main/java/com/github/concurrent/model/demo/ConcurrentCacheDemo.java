@@ -5,6 +5,7 @@ import java.util.concurrent.*;
 
 /**
  * <p>高效缓存样例(Future首先判断某个key的计算是否开始了，没开始则等待)</p>
+ * <p>扩展通过Future子类解决逾期问题</p>
  * @author <a href="mailto:7066450@qq.com">panxi</a>
  * @version 1.0.0
  * @since 1.0
@@ -38,6 +39,9 @@ public class ConcurrentCacheDemo {
             } catch (ExecutionException e) {
                 e.printStackTrace();
                 throw launderThrowable(e.getCause());
+            } catch (CancellationException e){
+                //解决Cache Pollution问题
+                cache.remove(key, future);
             }
         }
     }
