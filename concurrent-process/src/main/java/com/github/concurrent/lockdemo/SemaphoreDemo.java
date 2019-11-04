@@ -12,7 +12,6 @@ import java.util.concurrent.*;
  */
 public class SemaphoreDemo {
 
-
     public static void main(String[] args) {
         Semaphore semaphore = new Semaphore(10);
         ThreadFactory threadFactory = new WorkThreadFactory();
@@ -25,8 +24,9 @@ public class SemaphoreDemo {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                semaphore.release(5);
             }finally {
-                semaphore.release(4);
+                semaphore.release(5);
             }
         });
         executorService.execute(() -> {
@@ -36,6 +36,7 @@ public class SemaphoreDemo {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                semaphore.release(5);
             }finally {
                 semaphore.release(5);
             }
@@ -46,6 +47,7 @@ public class SemaphoreDemo {
                 System.out.println("线程三开始执行");
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                semaphore.release(5);
             }finally {
                 semaphore.release(5);
             }

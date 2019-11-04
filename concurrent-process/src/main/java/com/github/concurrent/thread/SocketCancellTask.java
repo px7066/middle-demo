@@ -1,7 +1,6 @@
 package com.github.concurrent.thread;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
