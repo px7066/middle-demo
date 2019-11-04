@@ -1,4 +1,4 @@
-package com.github.concurrent.model.demo;
+package com.github.concurrent.model.safe;
 
 import java.util.Map;
 import java.util.concurrent.*;
@@ -50,7 +50,7 @@ public class ConcurrentCacheDemo {
      * 强制将throwable转换成Exception
       * @param e Throwable
      * @return java.lang.RuntimeException
-     * @see com.github.concurrent.model.demo.ConcurrentCacheDemo#launderThrowable(Throwable)
+     * @see com.github.concurrent.model.safe.ConcurrentCacheDemo#launderThrowable(Throwable)
      */
     public static RuntimeException launderThrowable(Throwable e){
         if(e instanceof RuntimeException){

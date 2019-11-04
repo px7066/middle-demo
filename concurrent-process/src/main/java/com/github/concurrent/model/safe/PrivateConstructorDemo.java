@@ -1,4 +1,4 @@
-package com.github.concurrent.model.demo;
+package com.github.concurrent.model.safe;
 
 import com.github.common.annotation.definition.LocalThreadSafe;
 import lombok.Data;

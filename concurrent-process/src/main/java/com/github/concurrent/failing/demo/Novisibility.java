@@ -1,6 +1,5 @@
 package com.github.concurrent.failing.demo;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <p>可见性demo</p>

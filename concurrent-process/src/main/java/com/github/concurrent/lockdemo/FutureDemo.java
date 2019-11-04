@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 /**
- * <p>Futrue demo</p>
+ * <p>Futrue safe</p>
  * @author <a href="mailto:7066450@qq.com">panxi</a>
  * @version 1.0.0
  * @since 1.0

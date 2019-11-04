@@ -68,10 +68,10 @@ public class ReadWriteLockDemo {
     public static void main(String[] args) throws InterruptedException {
         map.put("data", "readlock");
         ReadWriteLockDemo demo = new ReadWriteLockDemo();
-//        Thread readThread1 = new Thread(demo::read);
-//        Thread readThread2 = new Thread(demo::read);
-//        Thread writeThread1 = new Thread(demo::write);
-//        Thread writeThread2 = new Thread(demo::write1);
+//        Thread readThread1 = new Thread(safe::read);
+//        Thread readThread2 = new Thread(safe::read);
+//        Thread writeThread1 = new Thread(safe::write);
+//        Thread writeThread2 = new Thread(safe::write1);
 //
 //        readThread1.start();
 //        readThread1.join();
