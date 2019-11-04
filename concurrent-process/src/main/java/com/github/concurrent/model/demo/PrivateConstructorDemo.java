@@ -1,6 +1,6 @@
 package com.github.concurrent.model.demo;
 
-import com.github.common.annotation.LocalThreadSafe;
+import com.github.common.annotation.definition.LocalThreadSafe;
 import lombok.Data;
 
 /**
@@ -9,8 +9,8 @@ import lombok.Data;
  * @version 1.0.0
  * @since 1.0
  */
-@LocalThreadSafe
 @Data
+@LocalThreadSafe
 public class PrivateConstructorDemo {
     private int x,y;
 

@@ -1,6 +1,6 @@
 package com.github.concurrent.model.demo;
 
-import com.github.common.annotation.LocalThreadSafe;
+import com.github.common.annotation.definition.LocalThreadSafe;
 import com.github.concurrent.model.vo.UserVo;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -15,8 +15,8 @@ import java.util.Set;
  * @version 1.0.0
  * @since 1.0
  */
-@LocalThreadSafe
 @Data
+@LocalThreadSafe
 public class MysetDemo {
     // hashset本身不是线程安全的，但是将它封装到myset进行线程安全的访问(装饰器设计模式)
     private final Set<UserVo> myset = new HashSet<>();
