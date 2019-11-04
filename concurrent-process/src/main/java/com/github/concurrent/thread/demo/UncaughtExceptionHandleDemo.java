@@ -19,5 +19,6 @@ public class UncaughtExceptionHandleDemo {
         executorService.execute(() -> {
             throw new RuntimeException("测试");
         });
+        executorService.shutdown();
     }
 }
