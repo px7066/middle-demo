@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
  * @version: 1.0.0
  * @since 1.0
  */
-@Repository
 public interface IUserDao {
     UserPo selectUserById(Integer id);
 }
