@@ -1,6 +1,7 @@
 package com.github.concurrent.lockdemo;
 
 import com.github.concurrent.lockdemo.factory.WorkThreadFactory;
+import com.github.concurrent.thread.TimingLogThreadPool;
 
 import java.util.concurrent.*;
 
@@ -15,7 +16,7 @@ public class CountDownLatchDemo {
     public static void main(String[] args) {
         final CountDownLatch latch = new CountDownLatch(2);
         System.out.println("主线程执行阻塞");
-        ExecutorService executorService = new ThreadPoolExecutor(2, 5, 1000, TimeUnit.SECONDS,
+        ExecutorService executorService = new TimingLogThreadPool(2, 5, 1000, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(),new WorkThreadFactory());
         executorService.execute(() -> {
             try {
@@ -36,10 +37,12 @@ public class CountDownLatchDemo {
         });
         try {
             latch.await();
+            System.out.println("主线程继续执行任务");
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            executorService.shutdown();
         }
-        System.out.println("主线程继续执行任务");
 
     }
 }

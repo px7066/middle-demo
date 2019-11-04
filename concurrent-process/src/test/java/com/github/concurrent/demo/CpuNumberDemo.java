@@ -1,10 +1,10 @@
-package com.github.concurrent.thread.demo;
+package com.github.concurrent.demo;
 
 /**
  * <p>给出CPU的个数</p>
  *
  * @author <a href="mailto:7066450@qq.com">panxi</a>
- * @version $Id$
+ * @version 1.0.0
  * @since 1.0
  */
 public class CpuNumberDemo {
