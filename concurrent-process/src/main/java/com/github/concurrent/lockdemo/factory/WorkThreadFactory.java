@@ -1,5 +1,7 @@
 package com.github.concurrent.lockdemo.factory;
 
+import com.github.concurrent.thread.handle.CustomizeUncaughtExceptionHandler;
+
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -26,6 +28,8 @@ public class WorkThreadFactory implements ThreadFactory {
     public Thread newThread(Runnable r) {
         int c = atomicInteger.incrementAndGet();
         System.out.println("create work-thread-" + c);
-        return new Thread(r, "work-thread-" + c);
+        Thread thread =new Thread(r, "work-thread-" + c);
+        thread.setUncaughtExceptionHandler(new CustomizeUncaughtExceptionHandler());
+        return thread;
     }
 }
