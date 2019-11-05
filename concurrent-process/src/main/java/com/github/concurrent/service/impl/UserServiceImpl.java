@@ -1,6 +1,5 @@
 package com.github.concurrent.service.impl;
 
-import com.github.common.annotation.definition.ClusterThreadUnSafe;
 import com.github.common.annotation.definition.LocalThreadSafe;
 import com.github.concurrent.dao.user.DubboUserMapper;
 import com.github.concurrent.model.user.DubboUser;
