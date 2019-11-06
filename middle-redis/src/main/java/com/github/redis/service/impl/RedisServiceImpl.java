@@ -1,5 +1,6 @@
 package com.github.redis.service.impl;
 
+import com.github.common.annotation.aop.ResubmitLock;
 import com.github.redis.service.IRedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,6 +23,7 @@ public class RedisServiceImpl implements IRedisService {
     }
 
     @Override
+    @ResubmitLock(prefix = "query", timeout = 5000)
     public String query() {
         return stringRedisTemplate.opsForValue().get("redis-test");
     }

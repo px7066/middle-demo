@@ -5,6 +5,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>middle-parent</module>
+        <module>middle-common</module>
+        <module>remote-api</module>
+        <module>common-support</module>
         <module>middle-mongo</module>
         <module>middle-mail</module>
         <module>middle-redis</module>
@@ -13,11 +16,10 @@
         <module>eureka-consumer</module>
         <module>dubbo-producer</module>
         <module>dubbo-consumer</module>
-        <module>remote-api</module>
         <module>remote-model</module>
         <module>middle-rocketmq</module>
-        <module>middle-common</module>
         <module>concurrent-process</module>
+
     </modules>
     <groupId>com.github</groupId>
     <artifactId>middle-demo</artifactId>

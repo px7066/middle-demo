@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 /**
  * 启动器
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.github")
 @EnableCaching
 public class RedisStarter {
     public static void main(String[] args) {

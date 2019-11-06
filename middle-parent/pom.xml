@@ -85,9 +85,17 @@
 
             <dependency>
                 <groupId>com.github</groupId>
+                <artifactId>common-support</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github</groupId>
                 <artifactId>remote-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+
 
             <!--项目内依赖-->
 
