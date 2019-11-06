@@ -1,6 +1,5 @@
-package com.github.common.annotation;
+package com.github.common.annotation.definition;
 
-import com.github.common.annotation.definition.LocalThreadSafe;
 
 import java.lang.annotation.*;
 
