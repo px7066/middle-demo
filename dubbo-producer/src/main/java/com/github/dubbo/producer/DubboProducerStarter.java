@@ -19,5 +19,4 @@ public class DubboProducerStarter {
     public static void main(String[] args) {
         SpringApplication.run(DubboProducerStarter.class, args);
     }
-
 }

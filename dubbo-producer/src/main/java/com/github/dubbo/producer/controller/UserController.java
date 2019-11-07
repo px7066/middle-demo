@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * <p>UserController</p>
  *
@@ -19,7 +21,7 @@ public class UserController {
     private IUserService userService;
 
     @GetMapping("queryUserById")
-    public UserVo queryUserById(Integer id){
+    public UserVo queryUserById(Integer id, HttpServletRequest request){
         return userService.queryUserById(id);
     }
 }
