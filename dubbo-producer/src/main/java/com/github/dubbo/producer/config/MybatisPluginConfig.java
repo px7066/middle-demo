@@ -18,12 +18,9 @@ public class MybatisPluginConfig {
 
     @Bean
     public ConfigurationCustomizer configurationCustomizer(){
-        return new ConfigurationCustomizer() {
-            @Override
-            public void customize(org.apache.ibatis.session.Configuration configuration) {
-                configuration.addInterceptor(new StatementPlugin());
-                configuration.addInterceptor(new ResultSetHandlerPlugin());
-            }
+        return configuration -> {
+            configuration.addInterceptor(new StatementPlugin());
+            configuration.addInterceptor(new ResultSetHandlerPlugin());
         };
     }
 

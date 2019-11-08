@@ -1,40 +1,41 @@
 package com.github.support.mybatis.plugin;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.ibatis.executor.resultset.DefaultResultSetHandler;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
-import org.apache.ibatis.executor.statement.StatementHandler;
-import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Signature;
 
-import java.sql.Connection;
 import java.sql.Statement;
+import java.util.Properties;
 
 /**
- * <p>ResultSetHandler</p>
- *
+ * <p>ResultSetHandler拦截器</p>
  * @author <a href="mailto:7066450@qq.com">panxi</a>
  * @version 1.0.0
  * @since 1.0
  */
 @Intercepts({
-        @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {DefaultResultSetHandler.class})
-})
+        @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = { Statement.class}) })
 public class ResultSetHandlerPlugin implements Interceptor {
-
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        //通过StatementHandler获取执行的sql
-        StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
-        BoundSql boundSql = statementHandler.getBoundSql();
-        String sql = boundSql.getSql();
-        long start = System.currentTimeMillis();
-        Object proceed = invocation.proceed();
-        long end = System.currentTimeMillis();
-        System.out.println(sql);
-        System.out.println(end - start);
-        return proceed;
+        Object target = invocation.getTarget();
+        Statement stmt = (Statement) invocation.getArgs()[0];
+        if (target instanceof DefaultResultSetHandler) {
+            DefaultResultSetHandler resultSetHandler = (DefaultResultSetHandler) target;
+            System.out.println(resultSetHandler);
+            System.out.println(stmt);
+            return invocation.proceed();
+        }
+        return invocation.proceed();
+    }
+
+
+    @Override
+    public void setProperties(Properties properties) {
+        System.out.println("设置属性");
     }
 }
