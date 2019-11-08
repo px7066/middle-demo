@@ -31,7 +31,7 @@ public class MysetDemo {
         if(!StringUtils.isEmpty(name)){
             final  UserVo vo = new UserVo();
             myset.forEach((e) -> {
-                if(name.equalsIgnoreCase(e.getName())){
+                if(name.equalsIgnoreCase(e.getUserName())){
                     BeanUtils.copyProperties(e, vo);
                 }
             });

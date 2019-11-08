@@ -1,9 +1,9 @@
 package com.github.concurrent.service.impl;
 
 import com.github.common.annotation.definition.LocalThreadSafe;
-import com.github.concurrent.dao.user.DubboUserMapper;
-import com.github.concurrent.model.user.DubboUser;
-import com.github.concurrent.model.user.DubboUserExample;
+import com.github.concurrent.dao.generator.UserMapper;
+import com.github.concurrent.model.generator.User;
+import com.github.concurrent.model.generator.UserExample;
 import com.github.concurrent.model.vo.UserVo;
 import com.github.concurrent.service.IUserService;
 import org.springframework.beans.BeanUtils;
@@ -25,25 +25,25 @@ import java.util.concurrent.atomic.AtomicLong;
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    private DubboUserMapper dubboUserMapper;
+    private UserMapper userMapper;
 
     private AtomicLong visitNum = new AtomicLong(0);
 
 
     @Override
     public UserVo queryUserById(Integer userId) {
-        DubboUser dubboUser = dubboUserMapper.selectByPrimaryKey(userId);
+        User user = userMapper.selectByPrimaryKey(userId);
         UserVo vo = new UserVo();
-        BeanUtils.copyProperties(dubboUser, vo);
+        BeanUtils.copyProperties(user, vo);
         return vo;
     }
 
     @Override
     public UserVo queryUserByName(String name) {
-        DubboUserExample example = new DubboUserExample();
-        DubboUserExample.Criteria criteria = example.createCriteria();
-        criteria.andNameEqualTo(name);
-        List<DubboUser> users = dubboUserMapper.selectByExample(example);
+        UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
+        criteria.andUserNameEqualTo(name);
+        List<User> users = userMapper.selectByExample(example);
         if(CollectionUtils.isEmpty(users)){
             return null;
         }
@@ -60,13 +60,13 @@ public class UserServiceImpl implements IUserService {
     @Override
     @LocalThreadSafe
     public synchronized boolean saveUser(UserVo vo) {
-        UserVo selectUser = this.queryUserByName(vo.getName());
+        UserVo selectUser = this.queryUserByName(vo.getUserName());
         if(null != selectUser){
             return false;
         }
-        DubboUser user = new DubboUser();
+        User user = new User();
         BeanUtils.copyProperties(vo, user);
-        int id =dubboUserMapper.insert(user);
+        int id = userMapper.insert(user);
         return id > 0;
     }
 

@@ -35,7 +35,7 @@
 		
 		<!-- jdbc连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://47.105.137.27:3306/dubbo" userId="root"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/middle_demo" userId="root"
 			password="123456" />
 		<!-- 类型转换 -->
 		<javaTypeResolver>
@@ -44,27 +44,35 @@
 		</javaTypeResolver>
 
 		<!-- 生成实体类地址 -->
-		<javaModelGenerator targetPackage="com.github.concurrent.model.user"
+		<javaModelGenerator targetPackage="com.github.concurrent.model.generator"
 			targetProject="../concurrent-process/src/main/java">
 			<property name="enableSubPackages" value="false" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成mapxml文件 -->
-		<sqlMapGenerator targetPackage="com.github.concurrent.mapper.user"
+		<sqlMapGenerator targetPackage="com.github.concurrent.mapper.generator"
 			targetProject="../concurrent-process/src/main/resources">
 			<property name="enableSubPackages" value="false" />
 
 		</sqlMapGenerator>
 		<!-- 生成mapxml对应client，也就是接口dao -->
-		<javaClientGenerator targetPackage="com.github.concurrent.dao.user"
+		<javaClientGenerator targetPackage="com.github.concurrent.dao.generator"
 			targetProject="../concurrent-process/src/main/java" type="XMLMAPPER">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- table可以有多个,每个数据库中的表都可以写一个table，tableName表示要匹配的数据库表,也可以在tableName属性中通过使用%通配符来匹配所有数据库表,只有匹配的表才会自动生成文件 -->
-		<table tableName="dubbo_user" domainObjectName="DubboUser"
+		<table tableName="md_user" domainObjectName="User"
 			enableCountByExample="true" enableUpdateByExample="true"
 			enableDeleteByExample="true" enableSelectByExample="true"
 			selectByExampleQueryId="true">
+			<property name="useActualColumnNames" value="false" />
+			<!-- 数据库表主键 -->
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>
+		<table tableName="md_index" domainObjectName="Index"
+			   enableCountByExample="true" enableUpdateByExample="true"
+			   enableDeleteByExample="true" enableSelectByExample="true"
+			   selectByExampleQueryId="true">
 			<property name="useActualColumnNames" value="false" />
 			<!-- 数据库表主键 -->
 			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
