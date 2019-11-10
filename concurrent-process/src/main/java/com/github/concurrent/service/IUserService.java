@@ -18,4 +18,10 @@ public interface IUserService {
     boolean saveUser(UserVo vo);
 
     Long queryVisitNum();
+
+    void testTransactionRollback() throws Exception;
+
+    void testTransactionRollbackA() throws Exception;
+
+    void testTransactionRollbackB() throws Exception;
 }

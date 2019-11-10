@@ -8,7 +8,7 @@ CREATE TABLE `md_user` (
   `user_age` tinyint(32) DEFAULT NULL COMMENT '用户年龄',
   `version` int(12) DEFAULT NULL COMMENT '版本',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `delete_flag` tinyint(255) DEFAULT NULL COMMENT '删除标志',
+  `delete_flag` tinyint(1) DEFAULT NULL COMMENT '删除标志',
   PRIMARY KEY (`id`),
   UNIQUE KEY `merge_index` (`user_name`,`delete_flag`) USING BTREE COMMENT '组合索引'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;

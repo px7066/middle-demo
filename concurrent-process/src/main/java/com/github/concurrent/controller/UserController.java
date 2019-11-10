@@ -39,4 +39,16 @@ public class UserController {
     public Long queryVisitNum(){
         return userService.queryVisitNum();
     }
+
+    @GetMapping("testTransation")
+    public void testTransation(){
+        try {
+            userService.testTransactionRollback();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

@@ -25,7 +25,7 @@ spring:
       min-evictable-idle-time-millis: 30001
       async-close-connection-enable: true
 mybatis:
-  type-aliases-package: com.github.concurrent.model
+  type-aliases-package: com.github.concurrent.model.generator
   mapper-locations: classpath:com/github/concurrent/mapper/**/*Mapper.xml
 
 #sql log
