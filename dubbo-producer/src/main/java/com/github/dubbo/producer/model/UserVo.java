@@ -2,6 +2,8 @@ package com.github.dubbo.producer.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * <p>用户返回</p>
  *
@@ -10,7 +12,8 @@ import lombok.Data;
  * @since 1.0
  */
 @Data
-public class UserVo {
+public class UserVo implements Serializable {
+
     private Integer id;
 
     private String name;
