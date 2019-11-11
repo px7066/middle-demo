@@ -1,5 +1,6 @@
 package com.github.remote.api.dubbo.producer;
 
+import com.github.remote.model.dubbo.producer.DubboSerializableTestDto;
 import com.github.remote.model.dubbo.producer.UserRmoteDto;
 
 /**
@@ -16,4 +17,14 @@ public interface IUserRemoteService {
      * @return UserRmoteDto
      */
     UserRmoteDto queryUserById(Integer id);
+
+    /**
+     * 序列化测试
+     * @return DubboSerializableTestDto
+     */
+    DubboSerializableTestDto serializatableTestMethod();
+
+
+
+
 }
