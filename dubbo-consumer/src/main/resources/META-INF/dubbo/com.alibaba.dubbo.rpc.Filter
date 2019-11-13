@@ -1,1 +1,2 @@
 LogFilter=com.github.dubbo.consumer.filter.LogFilter
+CacheFilter=com.github.dubbo.consumer.filter.CacheFilter

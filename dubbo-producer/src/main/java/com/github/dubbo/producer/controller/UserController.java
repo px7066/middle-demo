@@ -22,6 +22,7 @@ public class UserController {
 
     @GetMapping("queryUserById")
     public UserVo queryUserById(Integer id, HttpServletRequest request){
+        System.out.println(request.getSession().getId());
         return userService.queryUserById(id);
     }
 }

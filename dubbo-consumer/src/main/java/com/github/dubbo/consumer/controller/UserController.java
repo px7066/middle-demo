@@ -7,6 +7,8 @@ import com.github.remote.model.dubbo.producer.UserRmoteDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * <p>用户Controller</p>
  *
@@ -20,7 +22,8 @@ public class UserController {
     private IUserRemoteService userRemoteService;
 
     @GetMapping("queryUserById")
-    public UserRmoteDto queryUserById(Integer id){
+    public UserRmoteDto queryUserById(Integer id, HttpServletRequest request){
+        System.out.println(request.getSession().getId());
         return userRemoteService.queryUserById(id);
     }
 

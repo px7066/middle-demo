@@ -35,7 +35,7 @@ public class UserRemoteServiceImpl implements IUserRemoteService {
             UserRmoteDto userRmoteDto = new UserRmoteDto();
             UserVo vo = userService.queryUserById(id);
             BeanUtils.copyProperties(vo, userRmoteDto);
-            return userRmoteDto;
+             return userRmoteDto;
         }
         return null;
     }
