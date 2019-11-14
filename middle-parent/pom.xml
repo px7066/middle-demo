@@ -68,6 +68,7 @@
         <druid.spring.boot.version>1.1.20</druid.spring.boot.version>
         <spring.version>5.2.0.RELEASE</spring.version>
         <servlet.version>4.0.1</servlet.version>
+        <canal.version>1.1.4</canal.version>
     </properties>
 
     <dependencyManagement>
@@ -220,6 +221,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.spring.boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.otter</groupId>
+                <artifactId>canal.client</artifactId>
+                <version>${canal.version}</version>
             </dependency>
 
 
