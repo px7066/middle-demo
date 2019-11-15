@@ -17,6 +17,7 @@ import com.alibaba.otter.canal.protocol.CanalEntry.RowData;
 
 /**
  * <p>client</p>
+ * <p>https://github.com/alibaba/canal/wiki/QuickStart 下载启动server</p>
  *
  * @author <a href="mailto:7066450@qq.com">panxi</a>
  * @version 1.0.0
@@ -26,7 +27,7 @@ public class ClientSample {
     public static void main(String args[]) {
         // 创建链接
         CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(AddressUtils.getHostIp(),
-                3306), "sjwdb", "root", "123456");
+                11111), "example", "", "");
         int batchSize = 1000;
         int emptyCount = 0;
         try {
