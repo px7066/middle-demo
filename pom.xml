@@ -20,6 +20,7 @@
         <module>middle-rocketmq</module>
         <module>concurrent-process</module>
         <module>middle-canal</module>
+        <module>middle-image</module>
     </modules>
     <groupId>com.github</groupId>
     <artifactId>middle-demo</artifactId>

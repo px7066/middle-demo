@@ -71,6 +71,7 @@
         <canal.version>1.1.4</canal.version>
         <commons.io.version>2.6</commons.io.version>
         <commons.lang.version>2.6</commons.lang.version>
+        <zwing.version>3.4.0</zwing.version>
     </properties>
 
     <dependencyManagement>
@@ -243,6 +244,19 @@
                 <version>${commons.lang.version}</version>
             </dependency>
 
+            <!--google二维码插件-->
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>${zwing.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>${zwing.version}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
@@ -261,6 +275,14 @@
                     <groupId>org.mybatis.generator</groupId>
                     <artifactId>mybatis-generator-maven-plugin</artifactId>
                     <version>${mybatis.generator.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${springboot.version}</version>
+                    <configuration>
+                        <fork>true</fork><!-- 如果没有该配置，热部署的devtools不生效 -->
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
