@@ -1,9 +1,12 @@
 package com.github;
 
 import java.net.InetSocketAddress;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.otter.canal.client.CanalConnectors;
 import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.common.utils.AddressUtils;
@@ -34,14 +37,13 @@ public class ClientSample {
             connector.connect();
             connector.subscribe(".*\\..*");
             connector.rollback();
-            int totalEmptyCount = 120;
+            int totalEmptyCount = 3000;
             while (emptyCount < totalEmptyCount) {
                 Message message = connector.getWithoutAck(batchSize); // 获取指定数量的数据
                 long batchId = message.getId();
                 int size = message.getEntries().size();
                 if (batchId == -1 || size == 0) {
                     emptyCount++;
-                    System.out.println("empty count : " + emptyCount);
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -98,8 +100,16 @@ public class ClientSample {
     }
 
     private static void printColumn(List<Column> columns) {
+        Map<String, String> map = new HashMap<>();
+        StringBuilder key = new StringBuilder();
         for (Column column : columns) {
+            if(column.getIsKey()){
+                key.append(column.getValue());
+            }
+            map.put(column.getName(), column.getValue());
             System.out.println(column.getName() + " : " + column.getValue() + "    update=" + column.getUpdated());
         }
+        System.out.println(key);
+        System.out.println(JSON.toJSONString(map));
     }
 }
