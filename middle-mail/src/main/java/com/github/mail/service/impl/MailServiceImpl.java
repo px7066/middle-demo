@@ -33,12 +33,12 @@ public class MailServiceImpl implements IMailService {
         try{
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             simpleMailMessage .setFrom("7066450@qq.com");
-            simpleMailMessage .setTo("panxi@zjport.gov.cn");
+            simpleMailMessage .setTo("xipan@bigvisiontech.com");
             simpleMailMessage.setSubject("主题");
             simpleMailMessage.setText("内容");
             javaMailSender.send(simpleMailMessage);//发送
         }catch(Exception e){
-            log.error("发送失败",e.getMessage());
+            log.error("发送失败",e);
         }
     }
 
@@ -49,7 +49,7 @@ public class MailServiceImpl implements IMailService {
             mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
             mimeMessageHelper .setFrom("7066450@qq.com");
-            mimeMessageHelper .setTo("panxi@zjport.gov.cn");
+            mimeMessageHelper .setTo("xipan@bigvisiontech.com");
             mimeMessageHelper.setSubject("HTML邮件发送测试");
             StringBuilder sb = new StringBuilder();
             sb.append("<h1>SpirngBoot测试邮件HTML</h1>")
@@ -69,7 +69,7 @@ public class MailServiceImpl implements IMailService {
             mimeMailMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
             mimeMessageHelper .setFrom("7066450@qq.com");
-            mimeMessageHelper .setTo("panxi@zjport.gov.cn");
+            mimeMessageHelper .setTo("xipan@bigvisiontech.com");
             mimeMessageHelper.setSubject("HTML邮件+附件发送测试");
             StringBuilder sb = new StringBuilder();
             sb.append("<h1>SpirngBoot测试邮件附件+HTML</h1>")
@@ -94,7 +94,7 @@ public class MailServiceImpl implements IMailService {
             mimeMailMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
             mimeMessageHelper .setFrom("7066450@qq.com");
-            mimeMessageHelper .setTo("panxi@zjport.gov.cn");
+            mimeMessageHelper .setTo("xipan@bigvisiontech.com");
             mimeMessageHelper.setSubject("HTML邮件+附件发送测试");
 
             Map<String, Object> model = new HashMap<>();
