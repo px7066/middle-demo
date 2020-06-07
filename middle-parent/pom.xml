@@ -52,6 +52,7 @@
         <java.version>1.8</java.version>
         <springboot.version>2.2.0.RELEASE</springboot.version>
         <project.version>0.0.1-SNAPSHOT</project.version>
+        <util.version>1.0-SNAPSHOT</util.version>
         <ribbon.version>2.2.2</ribbon.version>
         <fastjson.version>1.2.62</fastjson.version>
         <kafka.version>2.3.0</kafka.version>
@@ -72,11 +73,19 @@
         <commons.io.version>2.6</commons.io.version>
         <commons.lang.version>2.6</commons.lang.version>
         <zwing.version>3.4.0</zwing.version>
+        <poi.version>4.1.2</poi.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <!--项目内依赖-->
+
+            <dependency>
+                <groupId>com.github</groupId>
+                <artifactId>common-utils</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.github</groupId>
                 <artifactId>remote-model</artifactId>
@@ -255,6 +264,19 @@
                 <groupId>com.google.zxing</groupId>
                 <artifactId>core</artifactId>
                 <version>${zwing.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
             </dependency>
 
 

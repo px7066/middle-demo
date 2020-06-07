@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0.0
  * @since 1.0
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.github.concurrent", "com.github.support.bean"})
 @MapperScan(basePackages = "com.github.concurrent.dao")
 public class ConcurrentStarter {
     public static void main(String[] args) {
