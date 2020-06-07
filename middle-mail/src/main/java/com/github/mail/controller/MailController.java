@@ -14,8 +14,8 @@ public class MailController {
     private IMailService mailService;
 
 
-    @GetMapping("sendEmial")
-    public void sendEmial(){
+    @GetMapping("sendEmail")
+    public void sendEmail(){
         mailService.sendSimpleMail();
     }
 
