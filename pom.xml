@@ -22,6 +22,7 @@
         <module>middle-canal</module>
         <module>middle-image</module>
         <module>middle-excel</module>
+        <module>middle-elasticsearch</module>
     </modules>
     <groupId>com.github</groupId>
     <artifactId>middle-demo</artifactId>
