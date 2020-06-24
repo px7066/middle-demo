@@ -26,13 +26,13 @@ public class TestController {
 
     @PostMapping("/person")
     public String save(@RequestBody Person person) {
-        reactivePersonRepository.save(person);
-//        IndexQuery indexQuery = new IndexQueryBuilder()
-//                .withId(person.getId().toString())
-//                .withObject(person)
-//                .build();
-//        String documentId = elasticsearchOperations.index(indexQuery, IndexCoordinates.of("id"));
-        return person.getId();
+//        reactivePersonRepository.save(person);
+        IndexQuery indexQuery = new IndexQueryBuilder()
+                .withId(person.getId().toString())
+                .withObject(person)
+                .build();
+        String documentId = elasticsearchOperations.index(indexQuery, IndexCoordinates.of("person"));
+        return documentId;
     }
 
     @GetMapping("/person/{id}")
