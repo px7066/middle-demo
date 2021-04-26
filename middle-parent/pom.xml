@@ -70,7 +70,7 @@
         <spring.version>5.2.0.RELEASE</spring.version>
         <servlet.version>4.0.1</servlet.version>
         <canal.version>1.1.4</canal.version>
-        <commons.io.version>2.6</commons.io.version>
+        <commons.io.version>2.7</commons.io.version>
         <commons.lang.version>2.6</commons.lang.version>
         <zwing.version>3.4.0</zwing.version>
         <poi.version>4.1.2</poi.version>
