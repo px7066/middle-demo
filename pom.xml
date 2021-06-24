@@ -24,6 +24,7 @@
         <module>middle-excel</module>
         <module>middle-elasticsearch</module>
         <module>leetcode</module>
+        <module>middle-kafka</module>
     </modules>
     <groupId>com.github</groupId>
     <artifactId>middle-demo</artifactId>
