@@ -9,6 +9,7 @@ import org.apache.kafka.common.TopicPartition;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -25,7 +26,7 @@ public class KafkaConsumerMain {
     private static Properties kafkaProps = new Properties();
 
     KafkaConsumer<String, String> init(){
-        kafkaProps.put("bootstrap.servers", "47.105.137.27:9092");
+        kafkaProps.put("bootstrap.servers", "localhost:9092");
         kafkaProps.put("group.id", "CountryCounter");
         kafkaProps.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         kafkaProps.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
@@ -36,13 +37,17 @@ public class KafkaConsumerMain {
 
     public static void main(String[] args) {
         KafkaConsumerMain kafkaConsumerMain = new KafkaConsumerMain();
-        KafkaConsumer kafkaConsumer = kafkaConsumerMain.init();
+        KafkaConsumer<String, String> kafkaConsumer = kafkaConsumerMain.init();
+
 //        kafkaConsumer.subscribe(Collections.singleton("CustomerCountry"), new HandleRebalance());
 //        kafkaConsumerMain.consume(kafkaConsumer);
-        kafkaConsumerMain.consumeByPartition(kafkaConsumer);
+
+//        kafkaConsumerMain.consumeByPartition(kafkaConsumer);
+
+        kafkaConsumerMain.consumeByOffset(kafkaConsumer);
     }
 
-    void consume(KafkaConsumer kafkaConsumer) {
+    void consume(KafkaConsumer<String, String> kafkaConsumer) {
         try {
             while (true){
                 ConsumerRecords<String, String> record = kafkaConsumer.poll(Duration.ofMinutes(100L));
@@ -64,7 +69,7 @@ public class KafkaConsumerMain {
         }
     }
 
-    void consumeByPartition(KafkaConsumer kafkaConsumer){
+    void consumeByPartition(KafkaConsumer<String, String> kafkaConsumer){
         List<PartitionInfo> partitionInfos = kafkaConsumer.partitionsFor("CustomerCountry");
         List<TopicPartition> partitions = new ArrayList<>();
         if(null != partitionInfos){
@@ -81,6 +86,34 @@ public class KafkaConsumerMain {
                 }
                 kafkaConsumer.commitSync();
             }
+        }
+    }
+
+
+    void consumeByOffset(KafkaConsumer<String, String> kafkaConsumer) {
+        List<TopicPartition> partitions = new ArrayList<>();
+        List<PartitionInfo> partitionInfos = kafkaConsumer.partitionsFor("CustomerCountry");
+        if (null != partitionInfos) {
+            for (PartitionInfo partitionInfo : partitionInfos) {
+                partitions.add(new TopicPartition(partitionInfo.topic(), partitionInfo.partition()));
+            }
+            kafkaConsumer.assign(partitions);
+        }
+        TopicPartition partition = new TopicPartition("CustomerCountry", 0);
+        long position = kafkaConsumer.position(partition, Duration.ofMinutes(1000L));
+        kafkaConsumer.seek(partition, position);
+        while (true){
+            ConsumerRecords<String, String> records = kafkaConsumer.poll(Duration.ofMinutes(1000L));
+            if(records.count() > 0){
+                for (ConsumerRecord<String, String> record : records) {
+                    System.out.printf("topic = %s, partition = %s, offset = %d, customer = %s, country = %s\n", record.topic(),
+                            record.partition(), record.offset(), record.key(),
+                            record.value());
+                }
+                position = position + records.count();
+                kafkaConsumer.seek(partition, position);
+            }
+            kafkaConsumer.committed(partition);
         }
     }
 

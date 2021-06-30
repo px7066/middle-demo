@@ -3,10 +3,12 @@ package com.github.kafka.wheel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -15,6 +17,8 @@ public class WheelTimer {
     private static final Logger log = LoggerFactory.getLogger(WheelTimer.class);
 
     private static final int INSTANCE_COUNT_LIMIT = 64;
+
+    private static final AtomicInteger INSTANCE_COUNTER = new AtomicInteger();
 
     private static final long MILLISECOND_NANOS;
 
@@ -42,7 +46,7 @@ public class WheelTimer {
 
     private final Queue<WheelTimer.WheelTask> tasks;
 
-//    private final Queue<WheelTimer.WheelTask> cancelledTasks;
+    private final Queue<WheelTimer.WheelTask> cancelledTasks;
 
     private final CountDownLatch startTimeInitialized;
 
@@ -79,7 +83,7 @@ public class WheelTimer {
             throw new IllegalArgumentException(String.format("tickDuration: %d (expected: 0 < tickDuration in nanos < %d", tickDuration, 9223372036854775807L / (long)this.wheel.length));
         } else {
             tasks = new LinkedBlockingDeque<>();
-//            cancelledTasks = new LinkedBlockingQueue<>();
+            cancelledTasks = new LinkedBlockingQueue<>();
             if (duration < MILLISECOND_NANOS) {
                 log.warn("Configured tickDuration {} smaller then {}, using 1ms.", tickDuration, MILLISECOND_NANOS);
                 this.tickDuration = MILLISECOND_NANOS;
@@ -257,7 +261,7 @@ public class WheelTimer {
                 long deadline = this.waitForNextTick();
                 if (deadline > 0L) {
                     idx = (int)(this.tick & (long)WheelTimer.this.mask);
-//                    this.processCancelledTasks();
+                    this.processCancelledTasks();
                     bucket = WheelTimer.this.wheel[idx];
                     this.transferTasksToBuckets();
                     bucket.expireTimeouts(deadline);
@@ -274,12 +278,29 @@ public class WheelTimer {
             while(true) {
                 WheelTimer.WheelTask task = WheelTimer.this.tasks.poll();
                 if (task == null) {
-//                    this.processCancelledTasks();
+                    this.processCancelledTasks();
                     return;
                 }
 
                 if (!task.isCancelled()) {
                     this.unProcessTask.add(task);
+                }
+            }
+        }
+
+        private void processCancelledTasks() {
+            while(true) {
+                WheelTimer.WheelTask task = WheelTimer.this.cancelledTasks.poll();
+                if (task == null) {
+                    return;
+                }
+
+                try {
+                    task.remove();
+                } catch (Throwable var3) {
+                    if (WheelTimer.log.isWarnEnabled()) {
+                        WheelTimer.log.warn("An exception was thrown while process a cancellation task", var3);
+                    }
                 }
             }
         }
@@ -323,6 +344,10 @@ public class WheelTimer {
                     }
                 }
             }
+        }
+
+        public Set<WheelTask> unprocessedTasks() {
+            return Collections.unmodifiableSet(this.unProcessTask);
         }
     }
 
@@ -388,6 +413,24 @@ public class WheelTimer {
         public boolean isExpired() {
             return this.state() == 2;
         }
+
+        public boolean cancel() {
+            if (!this.compareAndSetState(0, 1)) {
+                return false;
+            } else {
+                this.timer.cancelledTasks.add(this);
+                return true;
+            }
+        }
+
+        public void remove() {
+            WheelTimer.WheelBucket bucket = this.bucket;
+            if (bucket != null) {
+                bucket.remove(this);
+            } else {
+                this.timer.pendingTimeouts.decrementAndGet();
+            }
+        }
     }
 
 
@@ -402,5 +445,53 @@ public class WheelTimer {
         WheelTimer.WheelTask task = new WheelTimer.WheelTask(deadline, this, run);
         this.tasks.add(task);
         return task;
+    }
+
+    public Set<WheelTask> stop() {
+        if (Thread.currentThread() == this.workerThread) {
+            throw new IllegalStateException(WheelTimer.class.getSimpleName() + ".stop() cannot be called from " + WheelTask.class.getSimpleName());
+        } else {
+            boolean closed;
+            if (!WORKER_STATE_UPDATER.compareAndSet(this, 1, 2)) {
+                if (WORKER_STATE_UPDATER.getAndSet(this, 2) != 2) {
+                    INSTANCE_COUNTER.decrementAndGet();
+                }
+
+                return Collections.emptySet();
+            } else {
+                boolean var7 = false;
+
+                try {
+                    var7 = true;
+                    closed = false;
+
+                    while(this.workerThread.isAlive()) {
+                        this.workerThread.interrupt();
+
+                        try {
+                            this.workerThread.join(100L);
+                        } catch (InterruptedException var8) {
+                            closed = true;
+                        }
+                    }
+
+                    if (closed) {
+                        Thread.currentThread().interrupt();
+                        var7 = false;
+                    } else {
+                        var7 = false;
+                    }
+                } finally {
+                    if (var7) {
+                        INSTANCE_COUNTER.decrementAndGet();
+
+                    }
+                }
+
+                INSTANCE_COUNTER.decrementAndGet();
+
+                return this.work.unprocessedTasks();
+            }
+        }
     }
 }
